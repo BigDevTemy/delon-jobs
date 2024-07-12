@@ -18,8 +18,8 @@
 
             <h2>Dear Subscriber,</h2>
 
-            <p>We are pleased to bring to your notice of our most recent aquired faclity, which we believe will be of interest to you.</p>
-            <p>Kindly click on the link below to see more</p>
+            <p>{{$data->body}}</p>
+            <p>Thank you</p>
             
 
             <br/>

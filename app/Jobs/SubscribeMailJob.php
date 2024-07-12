@@ -16,7 +16,8 @@ class SubscribeMailJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    protected $subscribers;
+    public $subscribers;
+    public $post;
 
     /**
      * Create a new job instance.
@@ -24,9 +25,10 @@ class SubscribeMailJob implements ShouldQueue
      * @param array $subscribers
      * @return void
      */
-    public function __construct($subscribers)
+    public function __construct($subscribers,$post)
     {
         $this->subscribers = $subscribers;
+        $this->post = $post;
     }
 
     /**

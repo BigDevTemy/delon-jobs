@@ -53,9 +53,9 @@ class PostController extends Controller
        
         $postCreated = Post::create($request->all());
 
-        $allsubscribers = Subscribers::join('websites','subscribers.website_id','=','websites.id')->join('posts','posts.website_id','=','subscribers.website_id')->where('subscribers.website_id',$request->website_id)->get();
+        $allsubscribers = Subscribers::join('websites','subscribers.website_id','=','websites.id')->where('subscribers.website_id',$request->website_id)->get();
        
-        SubscribeMailJob::dispatch($allsubscribers);
+        SubscribeMailJob::dispatch($allsubscribers,$postCreated);
 
         return response()->json($allsubscribers,201);
     }
