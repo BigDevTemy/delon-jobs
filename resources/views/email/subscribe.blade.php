@@ -18,7 +18,7 @@
 
             <h2>Dear Subscriber,</h2>
 
-            <p>{{$data->body}}</p>
+            <p>{{ $data->body }}</p>
             <p>Thank you</p>
             
 

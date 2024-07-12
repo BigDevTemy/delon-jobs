@@ -57,7 +57,7 @@ class PostController extends Controller
        
         SubscribeMailJob::dispatch($allsubscribers,$postCreated);
 
-        return response()->json($allsubscribers,201);
+        return response()->json($postCreated,201);
     }
 
     /**

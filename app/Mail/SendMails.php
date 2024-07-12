@@ -47,6 +47,7 @@ class SendMails extends Mailable
     {
         return new Content(
             view: 'email.subscribe',
+            with: ['data' => $this->data]
         );
     }
 

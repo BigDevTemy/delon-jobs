@@ -29,6 +29,7 @@ class SubscribeMailJob implements ShouldQueue
     {
         $this->subscribers = $subscribers;
         $this->post = $post;
+      
     }
 
     /**
@@ -38,19 +39,14 @@ class SubscribeMailJob implements ShouldQueue
      */
     public function handle()
     {
-        $email = new SendMails();
-
         foreach ($this->subscribers as $subscriber) {
             try {
-                Mail::to($subscriber['email'])
-                ->subject($subscriber['title'])
-                ->from('sender@example.com', $subscriber['name'])
-                ->send($email);
+                Mail::to($subscriber->email)
+                    ->send(new SendMails($this->post));
             } catch (\Exception $e) {
-                // Handle any exceptions that may occur during the email sending process
-                // You can log the error, notify the administrator, or handle it in any other way
-                logger()->error('Error sending email to ' . $subscriber['email'] . ': ' . $e->getMessage());
+                logger()->error('Error sending email to ' . $subscriber->email . ': ' . $e->getMessage());
             }
         }
+        
     }
 }
